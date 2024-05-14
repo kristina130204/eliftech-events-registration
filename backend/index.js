@@ -6,7 +6,7 @@ import {
   getEvents,
   getParticipants,
   registerForEvent,
-} from "../controllers/eventController.js";
+} from "./controllers/eventController.js";
 import eventRoute from "./routes/eventRoute.js";
 
 const app = express();
