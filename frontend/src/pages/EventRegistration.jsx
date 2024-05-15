@@ -1,8 +1,8 @@
-import axios from "axios";
 import { Formik, Form, Field } from "formik";
 import { Link, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import * as Yup from "yup";
+import { instance } from "../axios";
 
 const SignupSchema = Yup.object().shape({
   fullName: Yup.string()
@@ -19,10 +19,7 @@ const EventRegistration = () => {
   const id = params.id;
   const submitForm = async (data) => {
     try {
-      const res = await axios.put(
-        `https://eliftech-backend-production.up.railway.app/api/events/${id}`,
-        data
-      );
+      const res = await instance.put(`${id}`, data);
       toast.success(res.data);
     } catch (error) {
       toast.error(error.response.data);
@@ -31,7 +28,9 @@ const EventRegistration = () => {
   return (
     <div className='container'>
       <div className='register'>
-        <Link className="go-back" to='/'>Go back to events</Link>
+        <Link className='go-back' to='/'>
+          Go back to events
+        </Link>
         <h1>Event registration</h1>
         <Formik
           initialValues={{

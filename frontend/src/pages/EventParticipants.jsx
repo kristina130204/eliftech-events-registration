@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Participant from "../components/Participant";
@@ -15,6 +14,7 @@ import {
   Legend,
   Tooltip,
 } from "chart.js/auto";
+import { instance } from "../axios";
 
 ChartJS.register(
   LinearScale,
@@ -43,9 +43,7 @@ const EventParticipants = () => {
 
   const participantsLoader = async () => {
     try {
-      const { data } = await axios.get(
-        `https://eliftech-backend-production.up.railway.app/api/events/${id}`
-      );
+      const { data } = await instance.get(`${id}`);
       setDataFromServer(data.participants);
       setParticipants(data.participants);
       setTitle(data.title);

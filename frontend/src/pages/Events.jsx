@@ -1,7 +1,7 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import Event from "../components/Event";
 import { PiCaretDown } from "react-icons/pi";
+import { instance } from "../axios";
 
 const Events = () => {
   const [events, setEvents] = useState([]);
@@ -14,8 +14,8 @@ const Events = () => {
   const eventsLoader = async () => {
     setIsLoading(true);
     try {
-      const { data } = await axios.get(
-        `https://eliftech-backend-production.up.railway.app/api/events/?page=${page}&sort=${sortBy}&order=${order}`
+      const { data } = await instance.get(
+        `?page=${page}&sort=${sortBy}&order=${order}`
       );
       setEvents((prevItems) => [...prevItems, ...data]);
       setPage((prevPage) => prevPage + 1);
