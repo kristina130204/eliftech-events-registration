@@ -78,7 +78,8 @@ const EventParticipants = () => {
 
   useEffect(() => {
     participantsLoader();
-  });
+    // eslint-disable-next-line
+  }, []);
 
   const searchParticipants = (searchedText) => {
     searchedText = searchedText.toLowerCase();
