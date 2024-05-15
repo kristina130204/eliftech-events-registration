@@ -2,6 +2,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Participant from "../components/Participant";
+import { Chart } from "react-chartjs-2";
+import { month } from "../helper/month";
 
 import {
   Chart as ChartJS,
@@ -12,9 +14,7 @@ import {
   LineElement,
   Legend,
   Tooltip,
-} from "chart.js";
-import { Chart } from "react-chartjs-2";
-import { month } from "../helper/month";
+} from "chart.js/auto";
 
 ChartJS.register(
   LinearScale,
@@ -32,6 +32,7 @@ const EventParticipants = () => {
   const [title, setTitle] = useState("");
   const params = useParams();
   const id = params.id;
+
   const options = {
     scales: {
       y: {
@@ -43,7 +44,7 @@ const EventParticipants = () => {
   const participantsLoader = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:3001/api/events/${id}`
+        `https://eliftech-backend-production.up.railway.app/api/events/${id}`
       );
       setDataFromServer(data.participants);
       setParticipants(data.participants);
@@ -79,7 +80,7 @@ const EventParticipants = () => {
 
   useEffect(() => {
     participantsLoader();
-  }, []);
+  });
 
   const searchParticipants = (searchedText) => {
     searchedText = searchedText.toLowerCase();

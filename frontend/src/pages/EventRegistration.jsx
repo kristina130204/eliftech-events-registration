@@ -20,7 +20,7 @@ const EventRegistration = () => {
   const submitForm = async (data) => {
     try {
       const res = await axios.put(
-        `http://localhost:3001/api/events/${id}`,
+        `https://eliftech-backend-production.up.railway.app/api/events/${id}`,
         data
       );
       toast.success(res.data);

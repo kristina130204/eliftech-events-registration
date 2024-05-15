@@ -15,7 +15,7 @@ const Events = () => {
     setIsLoading(true);
     try {
       const { data } = await axios.get(
-        `http://localhost:3001/api/events/?page=${page}&sort=${sortBy}&order=${order}`
+        `https://eliftech-backend-production.up.railway.app/api/events/?page=${page}&sort=${sortBy}&order=${order}`
       );
       setEvents((prevItems) => [...prevItems, ...data]);
       setPage((prevPage) => prevPage + 1);
@@ -40,10 +40,12 @@ const Events = () => {
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+    // eslint-disable-next-line
   }, [isLoading]);
 
   useEffect(() => {
     eventsLoader();
+    // eslint-disable-next-line
   }, [sortBy, order]);
 
   const sortEvents = (property) => {
