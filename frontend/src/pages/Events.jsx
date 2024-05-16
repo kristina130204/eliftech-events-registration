@@ -27,24 +27,14 @@ const Events = () => {
   };
 
   const handleScroll = () => {
-    if (window.innerWidth > 780) {
-      if (
-        window.innerHeight + document.documentElement.scrollTop !==
-          document.documentElement.offsetHeight ||
-        isLoading
-      ) {
-        return;
-      }
-      eventsLoader();
-    } else {
-      if (
-        window.innerHeight + window.scrollY < document.body.offsetHeight ||
-        isLoading
-      ) {
-        return;
-      }
-      eventsLoader();
+    if (
+      window.innerHeight + document.documentElement.scrollTop !==
+        document.documentElement.offsetHeight ||
+      isLoading
+    ) {
+      return;
     }
+    eventsLoader();
   };
 
   useEffect(() => {
