@@ -3,6 +3,9 @@ import EventModel from "./models/Event.js";
 import axios from "axios";
 import schedule from "node-schedule";
 import express from "express";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
 
@@ -41,6 +44,6 @@ const job = schedule.scheduleJob(rule, async () => {
   saveEvents(events);
 });
 
-app.listen(8800, () => {
+app.listen(process.env.SEEDING_PORT, () => {
   console.log("Seeding server running");
 });
